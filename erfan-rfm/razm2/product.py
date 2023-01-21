@@ -43,6 +43,7 @@ class Product:
         elif category_id < 0:
             raise ValueError('Category Id cannot be less than 0')
         self.__category_id = category_id
+        self.db.update(self.id, {"category id":category_id})
         
     @property
     def title(self):
@@ -53,6 +54,7 @@ class Product:
         if not isinstance(title, str):
             raise TypeError('Title must be a string')
         self.__title = title
+        self.db.update(self.id, {"title":title})
         
     @property
     def short_description(self):
@@ -63,6 +65,7 @@ class Product:
         if not isinstance(short_description, str):
             raise TypeError('Short Description must be a string')
         self.__short_description = short_description
+        self.db.update(self.id, {"short description":short_description})
 
     @property
     def description(self):
@@ -73,6 +76,7 @@ class Product:
         if not isinstance(description, str):
             raise TypeError('Short Description must be a string')
         self.__description = description
+        self.db.update(self.id, {"description":description})
         
     @property
     def slug(self):
@@ -83,6 +87,7 @@ class Product:
         if not isinstance(slug, str):
             raise TypeError('Slug must be a string')
         self.__slug = slug
+        self.db.update(self.id, {"slug":slug})
         
     @property
     def permalink(self):
@@ -93,6 +98,7 @@ class Product:
         if not isinstance(permalink, str):
             raise TypeError('Permalink must be a string')
         self.__permalink = permalink
+        self.db.update(self.id, {"permalink":permalink})
         
     @property
     def is_available(self):
@@ -103,6 +109,7 @@ class Product:
         if not isinstance(is_available, bool):
             raise TypeError('Is Available must be a boolean')
         self.__is_available = is_available
+        self.db.update(self.id, {"is available":is_available})
         
     @property
     def sku(self):
@@ -113,6 +120,7 @@ class Product:
         if not isinstance(sku, str):
             raise TypeError('SKU must be a string')
         self.__sku = sku
+        self.db.update(self.id, {"sku":sku})
         
     @property
     def price(self):
@@ -125,6 +133,7 @@ class Product:
         elif price < 0:
             raise ValueError('Price cannot be less than 0')
         self.__price = price
+        self.db.update(self.price, {"price":price})
         
     @property
     def regular_price(self):
@@ -137,6 +146,7 @@ class Product:
         elif regular_price < 0:
             raise ValueError('Regular Price cannot be less than 0')
         self.__regular_price = regular_price
+        self.db.update(self.id, {"regular price":regular_price})
         
     @property
     def sale_price(self):
@@ -149,6 +159,7 @@ class Product:
         elif sale_price < 0:
             raise ValueError('Sale Price cannot be less than 0')
         self.__sale_price = sale_price
+        self.db.update(self.id, {"sale price":sale_price})
         
     @property
     def manage_stock(self):
@@ -159,6 +170,7 @@ class Product:
         if not isinstance(manage_stock, bool):
             raise TypeError('Manage Stock must be a boolean')
         self.__manage_stock = manage_stock
+        self.db.update(self.id, {"manage stock":manage_stock})
         
     @property
     def stock_quantity(self):
@@ -171,6 +183,7 @@ class Product:
         elif stock_quantity < 0:
             raise ValueError('Stock Quantity cannot be less than 0')
         self.__stock_quantity = stock_quantity
+        self.db.update(self.id, {"stock quantity":stock_quantity})
         
     @property
     def is_visible(self):
@@ -181,6 +194,7 @@ class Product:
         if not isinstance(is_visible, bool):
             raise TypeError('Is Visible must be a boolean')
         self.__is_visible = is_visible
+        self.db.update(self.id, {"is visible":is_visible})
         
     @property
     def db(self):
@@ -198,7 +212,7 @@ class Product:
         self.db.insert(
             {
                 "id" : self.id,
-                "category_id" : self.category_id,
+                "category id" : self.category_id,
                 "title" : self.title,
                 "short description" : self.short_description,
                 "description" : self.description,
