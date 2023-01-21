@@ -274,7 +274,11 @@ class Product:
         return self.db.list_all()
 
 
-    def __repr__(self) -> str:
+    def __repr__(self):
+        return f'<{self.__class__.__name__}(title="{self.__title}", slug="{self.__slug}")>'
+
+
+    def __str__(self) -> str:
         return f"the product with \n\
         Product Id: {self.id} \n\
         Title: {self.title} \n\
