@@ -1,0 +1,2 @@
+class EmailNotValidError(Exception):
+    pass
