@@ -3,18 +3,15 @@ import mysql.connector
 from pydantic import BaseModel
 from movie import  Movie
 
+
+
 mydb = mysql.connector.connect(host="localhost",user="arshiya",password="arshiya",database="python",port=3306)
 
 mycursor = mydb.cursor()
 
 app = FastAPI()
 
-# movies = [
-#           {"title":"","year":0},
-#           {"title":"Batman","year":2021},
-#           {"title":"joker","year":2022},
-#           {"title":"money Hiest","year":2015},
-#           {"title":"office","year":2005}]
+list_movies = []
 
 
 @app.get("/")
@@ -26,7 +23,8 @@ async def root():
 def get_movies():
     sql = "SELECT * FROM movies"
     mycursor.execute(sql)
-    movies = mycursor.fetchall() # function return everything by cursor
+    movies = mycursor.fetchall()
+    # movies = list_movies.append(movies_dict) # function return everything by cursor
     return movies
 
 # get single movie by id
