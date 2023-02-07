@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 engine = create_engine("sqlite:///database.db", connect_args={'check_same_thread':False})
 Base = declarative_base()
 
-sessionlocal = sessionmaker(engine=engine)
+sessionlocal = sessionmaker(bind=engine)
 
 def get_db():
     session = sessionlocal()
