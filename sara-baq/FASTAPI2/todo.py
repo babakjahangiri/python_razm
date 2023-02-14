@@ -23,10 +23,19 @@ async def find_by_id(id:int):
 
         return {"message":"todo with this id not found"}
 
-@todo_router.put("todo/{id}")
+@todo_router.put("/todo/{id}")
 async def update_todo(todo_data:TodoItem,id :int) -> dict:
     for todo in todo_list:
         if todo.id==id:
             todo.item=todo_data.item
             return {"message":"todo data updated successfully."}
         return {"message":"Todo with supplied ID doesn't exist"}
+
+@todo_router.delete("/todo/{id}")
+async def delete_todo(id:int) ->dict:
+    for index in range(len(todo_list)):
+        todo = todo_list[index]
+        if todo.id == id:
+            todo_list.pop(index)
+            return{"message":"todo deleted successfully"}
+        return{"message":"tofo with supplied ID doesnt exist"}
