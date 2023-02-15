@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from model import Todo,TodoItem
+from model import Todo,TodoItem,TodoItems
 
 todo_router = APIRouter()
 
@@ -39,3 +39,9 @@ async def delete_todo(id:int) ->dict:
             todo_list.pop(index)
             return{"message":"todo deleted successfully"}
         return{"message":"tofo with supplied ID doesnt exist"}
+
+@todo_router.get("/todo", response_model=TodoItems)
+async def retrieve_todo() -> dict:
+    return {
+        "todos": todo_list
+    }
