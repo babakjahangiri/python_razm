@@ -4,6 +4,7 @@ from db.models import DbUser
 from fastapi.exceptions import HTTPException
 from fastapi import status
 from exceptions import EmailNotValid
+from db.hash import Hash
 
 
 def create_user(db: Session, request: UserBase):
@@ -12,7 +13,7 @@ def create_user(db: Session, request: UserBase):
     user = DbUser(
         username=request.username,
         email=request.email,
-        password=request.password
+        password=Hash.bcrypt(request.password)
     )
     db.add(user)
     db.commit()
@@ -30,6 +31,10 @@ def get_user(id, db: Session):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail=f'not found this {id=}')
     return user
+
+
+def get_user_by_username(username, db: Session):
+    return db.query(DbUser).filter(DbUser.username == username).first()
 
 
 def delete_user(id, db: Session):
